@@ -11,21 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('people', function (Blueprint $table) {
+        Schema::create('entities', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('father_id')->nullable()->constrained('people');
-            $table->foreignUlid('mother_id')->nullable()->constrained('people');
-            $table->boolean('is_foster')->default(false);
-            $table->foreignUlid('foster_father_id')->nullable()->constrained('people');
-            $table->foreignUlid('foster_mother_id')->nullable()->constrained('people');
-            $table->string('nickname')->nullable();
             $table->string('name');
+            $table->foreignUlid('father_id')->nullable()->constrained('entities');
+            $table->foreignUlid('mother_id')->nullable()->constrained('entities');
+            $table->boolean('is_foster')->default(false);
+            $table->foreignUlid('foster_father_id')->nullable()->constrained('entities');
+            $table->foreignUlid('foster_mother_id')->nullable()->constrained('entities');
+            $table->string('nickname')->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->boolean('is_date_of_birth_precise')->default(false);
             $table->date('date_of_death')->nullable();
+            $table->boolean('is_date_of_death_precise')->default(false);
             $table->unsignedTinyInteger('age')->nullable();
             $table->unsignedTinyInteger('birth_order')->nullable();
             $table->string('email')->nullable();
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->foreignId('state_id')->nullable()->after('address')->constrained('zz_states');
             $table->foreignId('gender_id')->nullable()->after('state_id')->constrained('zz_categories');
             $table->softDeletes();

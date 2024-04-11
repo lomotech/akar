@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('couples', function (Blueprint $table) {
+        Schema::create('entity_couples', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('husband_id')->constrained('people');
-            $table->foreignUlid('wife_id')->constrained('people');
+            $table->foreignUlid('husband_id')->constrained('entities');
+            $table->foreignUlid('wife_id')->constrained('entities');
             $table->foreignId('marital_status_id')->nullable()->constrained('zz_statuses');
             $table->date('marriage_date')->nullable();
             $table->date('divorce_date')->nullable();

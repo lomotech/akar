@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('short_name');
-            $table->foreignId('parent_id')->constrained('zz_states');
+            $table->string('ddsa_code');
             $table->softDeletes();
             $table->timestamps();
         });
