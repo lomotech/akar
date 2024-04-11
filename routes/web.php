@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Entity\EntityController;
+use App\Http\Controllers;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,13 +13,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/entities/{entity}', [EntityController::class, 'show'])->name('entities.show');
-    Route::patch('/entities/{entity}', [EntityController::class, 'update'])->name('entities.update');
-    Route::get('/entities/{entity}/tree', [EntityController::class, 'tree'])->name('entities.tree');
-    Route::get('/entities/{entity}/chart', [EntityController::class, 'tree'])->name('entities.chart');
+    Route::get('/entities/{entity}', [Controllers\Entity\EntityController::class, 'show'])->name('entities.show');
+    Route::get('/entities/{entity}/tree', [Controllers\Entity\EntityController::class, 'tree'])->name('entities.tree');
+    Route::get('/entities/{entity}/chart', [Controllers\Entity\EntityController::class, 'tree'])->name('entities.chart');
+
+    Route::put('/entities/{entity}/links', [Controllers\Entity\EntityLinkController::class, 'update'])->name('entities.links.update');
+    Route::post('/entities/{entity}', [Controllers\Entity\EntityLinkController::class, 'store'])->name('entities.links.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

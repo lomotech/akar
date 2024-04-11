@@ -36,6 +36,24 @@ class Entity extends Model
         return $this->belongsTo(Categories::class);
     }
 
+    public static function maleList(): array
+    {
+        return self::query()
+            ->where('gender_id', Categories::$GENDER_MALE)
+            ->orderBy('name')
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
+    public static function femaleList(): array
+    {
+        return self::query()
+            ->where('gender_id', Categories::$GENDER_FEMALE)
+            ->orderBy('name')
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
     public function father(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'father_id');
