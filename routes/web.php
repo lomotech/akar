@@ -14,7 +14,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/entities/{entity}', [EntityController::class, 'show'])->name('entities.show');
+    Route::patch('/entities/{entity}', [EntityController::class, 'update'])->name('entities.update');
     Route::get('/entities/{entity}/tree', [EntityController::class, 'tree'])->name('entities.tree');
+    Route::get('/entities/{entity}/chart', [EntityController::class, 'tree'])->name('entities.chart');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
