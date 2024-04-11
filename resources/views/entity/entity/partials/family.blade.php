@@ -1,7 +1,9 @@
 <div class="max-w-7xl">
     <div class="px-4 sm:px-0">
         <h3 class="text-base font-semibold leading-7 text-gray-900">Family</h3>
-        <p class="border-gray-200 border"></p>
+        <p class="">
+            <a href="{{route('entities.tree', $entity->id)}}">show tree</a>
+        </p>
     </div>
     <dl class="divide-y divide-gray-100">
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

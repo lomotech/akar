@@ -13,7 +13,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('/entities', EntityController::class)->names('entities');
+    Route::get('/entities/{entity}', [EntityController::class, 'show'])->name('entities.show');
+    Route::get('/entities/{entity}/tree', [EntityController::class, 'tree'])->name('entities.tree');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
