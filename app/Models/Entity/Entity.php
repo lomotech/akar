@@ -31,6 +31,16 @@ class Entity extends Model
         'name' => 'string',
     ];
 
+    public function spouseWifes(): HasMany
+    {
+        return $this->hasMany(Couple::class, 'husband_id');
+    }
+
+    public function spouseHusbands(): HasMany
+    {
+        return $this->hasMany(Couple::class, 'wife_id');
+    }
+
     public function gender(): BelongsTo
     {
         return $this->belongsTo(Categories::class);

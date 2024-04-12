@@ -60,6 +60,15 @@ class EntityLinkController extends Controller
                     : $link->id;
                 $this->createSpouseLink($husbandId, $wifeId);
                 break;
+            case request()->has('child_name'):
+                $fatherId = $entity->gender_id == Categories::$GENDER_MALE
+                    ? $entity->id
+                    : $entity->spouseHusbands->first()->husband_id;
+                $motherId = $entity->gender_id == Categories::$GENDER_FEMALE
+                    ? $entity->id
+                    : $entity->spouseWifes->first()->wife_id;
+                $this->createChildData($fatherId, $motherId);
+                break;
         }
 
         return redirect(route('entities.show', $entity->id));
@@ -81,10 +90,20 @@ class EntityLinkController extends Controller
         ]);
     }
 
+    protected function createChildData($fatherId, $motherId)
+    {
+        return Entity::create([
+            'name'      => request('child_name'),
+            'gender_id' => request('child_gender_id'),
+            'father_id' => $fatherId,
+            'mother_id' => $motherId,
+        ]);
+    }
+
     protected function createSpouseData($entityGenderId)
     {
         return Entity::create([
-            'name'      => request('mother_name'),
+            'name'      => request('spouse_name'),
             'gender_id' => $entityGenderId == Categories::$GENDER_MALE
                 ? Categories::$GENDER_FEMALE
                 : Categories::$GENDER_MALE,

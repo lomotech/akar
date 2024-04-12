@@ -43,4 +43,13 @@ class Categories extends Model
     {
         return $this->hasMany(Categories::class, 'parent_id');
     }
+
+    public static function genderList(): array
+    {
+        return self::query()
+            ->where('parent_id', Categories::$GENDER)
+            ->orderBy('name')
+            ->pluck('name', 'id')
+            ->toArray();
+    }
 }

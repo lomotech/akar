@@ -11,9 +11,9 @@
             'name' => 'Tree',
         ],
         [
-            'route' => route('entities.chart', $entity->id),
-            'route_name' => 'entities.chart',
-            'name' => 'Chart',
+            'route' => route('entities.d3-tree', $entity->id),
+            'route_name' => 'entities.d3-tree',
+            'name' => 'D3 Tree',
         ],
     ];
 @endphp

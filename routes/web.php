@@ -15,7 +15,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/entities/{entity}', [Controllers\Entity\EntityController::class, 'show'])->name('entities.show');
     Route::get('/entities/{entity}/tree', [Controllers\Entity\EntityController::class, 'tree'])->name('entities.tree');
-    Route::get('/entities/{entity}/chart', [Controllers\Entity\EntityController::class, 'tree'])->name('entities.chart');
+    Route::get('/entities/{entity}/d3-tree', [Controllers\Entity\EntityController::class, 'd3Tree'])->name('entities.d3-tree');
 
     Route::put('/entities/{entity}/links', [Controllers\Entity\EntityLinkController::class, 'update'])->name('entities.links.update');
     Route::post('/entities/{entity}', [Controllers\Entity\EntityLinkController::class, 'store'])->name('entities.links.store');
