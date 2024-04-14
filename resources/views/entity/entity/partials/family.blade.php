@@ -70,8 +70,17 @@
                 </div>
             </dd>
         </div>
+        <div class="px-4 sm:px-0 pt-4">
+            <div class="flex justify-between">
+                <h3 class="text-base font-semibold leading-7 text-gray-900">Spouse</h3>
+                <a class="text-blue-500 hover:text-blue-700"
+                   href="{{route('entities.show', [$entity->id ?? '', 'a' => 'createSpouse'])}}">
+                    add
+                </a>
+            </div>
+            <p class="border-gray-200 border"></p>
+        </div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-medium leading-6 text-gray-900">Spouse</dt>
             <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                 <ol>
                     @php
